@@ -31,8 +31,11 @@ export const createTRPCContext = (opts: {
 }) => {
   const session = opts.session;
   const source = opts.headers.get("x-trpc-source") ?? "unknown";
-
-  console.log(">>> tRPC Request from", source, "by", session?.user);
+  if (session) {
+    console.log(">>> tRPC Request from", source, "by", session?.user);
+  } else {
+    console.log(">>> tRPC Request from", source, "by unknown user");
+  }
 
   return {
     session,
