@@ -26,8 +26,8 @@ export const post = sqliteTable("post", {
   content: text("content", { length: 256 }).notNull(),
   createdAt: text("createdAt")
     .notNull()
-    .default(sql`CURRENT_TIMESTAMP`),
+    .$defaultFn(() => sql`CURRENT_TIMESTAMP`),
   updatedAt: text("updatedAt")
     .notNull()
-    .default(sql`CURRENT_TIMESTAMP`),
+    .$defaultFn(() => sql`CURRENT_TIMESTAMP`),
 });
